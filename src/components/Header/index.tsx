@@ -8,7 +8,7 @@ export function Header(){
 
     return(
        <nav className=" flex w-full h-12 justify-center bg-slate-900 mt-4 ">
-        <ul className=" h-full w-full flex justify-between px-5 items-center max-w-screen-xl">
+        <ul className=" h-full w-full flex justify-between px-4 items-center max-w-screen-xl">
             <div className="flex items-center">
             <Link href="/"> <li className="font-bold text-2xl mx-2">
                 TAREFAS<span className="text-orange-400 ">+</span>
