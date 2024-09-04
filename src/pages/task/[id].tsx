@@ -50,10 +50,11 @@ export default function Task({item}: TaskProps){
                 <h2>Comentarios</h2>
                 <div>
                     <label>Nome</label>
-                    <div>
-                    <Inputarea />
-                    <FiTrash />
-                    </div>
+                    
+                    <form >
+                        <Inputarea />
+                        <FiTrash />
+                    </form>
                     
                 </div>
             </div>
