@@ -1,5 +1,8 @@
+//--------------------- IMPORTS -----------------------------------------------------------------------
+
 import { HTMLProps } from "react";
 
+// -------------------------------------TSX / JSX ------------------------------------------------------
 
 export function Inputarea({...rest}:HTMLProps<HTMLTextAreaElement>){
     return(

@@ -1,6 +1,10 @@
+//---------------------------- IMPORTS -----------------------------------
+
 import NextAuth from "next-auth/next";
 
 import GoogleProvider from 'next-auth/providers/google'
+
+//-----------------------------CONECT GOOGLE -----------------------------
 
 export const authOptions = {
     providers: [

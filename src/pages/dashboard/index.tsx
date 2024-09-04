@@ -1,3 +1,5 @@
+//---------------------------IMPORTS------------------------------------------------
+
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Inputarea } from "@/components/inputArea";
 import { GetServerSideProps } from "next";
@@ -8,6 +10,8 @@ import { FiShare, FiTrash } from "react-icons/fi";
 import {db} from '../../services/firebaseConection';
 import {addDoc, collection, query, orderBy, where, onSnapshot, doc, deleteDoc} from 'firebase/firestore';
 import Link from "next/link";
+
+//-----------------------------INTERFACES ---------------------------------------
 
 interface HomeProps{
     user:{
@@ -29,12 +33,13 @@ interface TaskProps{
 export default function Dashboard({user}: HomeProps){
 
 
-//------------------ useStates ------------------------------------
+//------------------ USESTATES ------------------------------------
+
     const[input, setInput] = useState("");
     const[publicTask, setPublicTask]= useState(false);
     const[tasks, setTasks] = useState<TaskProps[]>([]);
 
-//-------------------------useEffects -----------------------------
+//-------------------------USEEFFECTS-----------------------------
 
 useEffect(() => {
     async function loadTarefas() {
@@ -66,7 +71,7 @@ useEffect(() => {
     loadTarefas();
 },[user?.email])
 
-//-------------------------------------Handle funtions --------------------------
+//-------------------------------------HANDLE FUNCTIONS --------------------------
 
 async function handleShare(id: string){
     await navigator.clipboard.writeText(
@@ -111,7 +116,7 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
         const docRef = doc(db, "tarefas", id);
         await deleteDoc(docRef);
     }
-//---------------------------------------------------------------------------------
+//------------------------------------TSX / JSX---------------------------------------------
 
 
     return(
@@ -179,7 +184,7 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
     )
 }
 
-
+//---------------------------------SERVER SIDE -----------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async ({req}) =>{
     const session = await getSession({req});

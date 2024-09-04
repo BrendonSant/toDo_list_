@@ -1,5 +1,8 @@
+//------------------------------ IMPORSTS ----------------------------------------
+
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { Inputarea } from "@/components/inputArea";
 
 import {db} from '../../services/firebaseConection'
 import {
@@ -9,6 +12,12 @@ import {
     where,
     getDoc
 } from 'firebase/firestore';
+import { FiTrash } from "react-icons/fi";
+
+//--------------------------------------------------------------------------------
+
+
+//---------------------------- INTERFACES ----------------------------------------
 
 interface TaskProps {
     item: {
@@ -19,6 +28,8 @@ interface TaskProps {
         taskId: string;
     };
 }
+
+//--------------------------------- TSX / JSX -------------------------------------
 
 export default function Task({item}: TaskProps){
     return(
@@ -33,13 +44,25 @@ export default function Task({item}: TaskProps){
                         {item.tarefa}
                     </p>
                 </article>
-                <div>
-
-                </div>
+              
             </main>
+            <div>
+                <h2>Comentarios</h2>
+                <div>
+                    <label>Nome</label>
+                    <div>
+                    <Inputarea />
+                    <FiTrash />
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     )
 }
+
+
+//------------------------------------- SERVER SIDE -----------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async({params}) =>{
 

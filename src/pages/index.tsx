@@ -1,3 +1,5 @@
+//---------------------------IMPORTS --------------------------------
+
 import Image from "next/image";
 import { Inter } from "next/font/google";
 
@@ -6,7 +8,7 @@ import Heroimage from '../../public/home_img.webp';
 
 const inter = Inter({ subsets: ["latin"] });
 
-
+//------------------------------TSX/JSX----------------------------------
 
 export default function Home() {
   return (
