@@ -138,7 +138,7 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
                                 onChange={(event:ChangeEvent<HTMLTextAreaElement>)=>{
                                     setInput(event.target.value)
                                 }}
-                                placeholder="Digite aqui a sua tarefa..."
+                                placeholder=" Digite aqui a sua tarefa..."
                              />
                             <div className="flex w-full items-center m-4">
                             <input className="size-4" type="checkbox"
