@@ -115,12 +115,12 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
 
 
     return(
-        <div className="flex flex-col  items-center h-[calc(100vh-64px)] px-4">
+        <div className="flex flex-col  items-center min-h-screen h-fit px-4">
             <Head>
                 <title>Meu Painel</title>
             </Head>
             <main className="flex flex-col items-center w-full h-full" >
-                <section className=" w-full flex flex-col justify-center items-center  h-[calc(100vh/2)]" >
+                <section className=" w-full flex flex-col justify-center items-center mb-6  h-full" >
                     <div className=" w-full flex flex-col max-w-screen-lg mt-6 h-full">
                         <h1 className="font-sans font-bold text-3xl my-2">Qual a sua tarefa?</h1>
                         <form 
@@ -145,7 +145,7 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
                         </form>
                     </div>
                 </section>
-                <section className=" w-full flex flex-col px-4 h-[calc(100vh/2)] bg-white max-w-screen-lg rounded-t">
+                <section className=" h-full w-full flex flex-col px-4  bg-white max-w-screen-lg rounded-t">
                     <h1 className="font-sans font-bold text-3xl mb-6 mt-4 text-black">Minhas terefas</h1>
                    {tasks.map((item)=>(
                      <article key={item.id} className=" mb-4 border-2 rounded border-gray-300">
