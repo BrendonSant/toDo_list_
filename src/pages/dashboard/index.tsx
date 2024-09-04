@@ -1,4 +1,4 @@
-//---------------------------IMPORTS------------------------------------------------
+//---------------------------IMPORTS----------------------------------------------
 
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Inputarea } from "@/components/inputArea";
@@ -33,13 +33,13 @@ interface TaskProps{
 export default function Dashboard({user}: HomeProps){
 
 
-//------------------ USESTATES ------------------------------------
+//------------------ USESTATES --------------------------------------------------
 
     const[input, setInput] = useState("");
     const[publicTask, setPublicTask]= useState(false);
     const[tasks, setTasks] = useState<TaskProps[]>([]);
 
-//-------------------------USEEFFECTS-----------------------------
+//-------------------------USEEFFECTS--------------------------------------------
 
 useEffect(() => {
     async function loadTarefas() {
@@ -116,6 +116,8 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
         const docRef = doc(db, "tarefas", id);
         await deleteDoc(docRef);
     }
+
+
 //------------------------------------TSX / JSX---------------------------------------------
 
 
@@ -127,7 +129,7 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
             <main className="flex flex-col items-center w-full h-full" >
                 <section className=" w-full flex flex-col justify-center items-center mb-6  h-full" >
                     <div className=" w-full flex flex-col max-w-screen-lg mt-6 h-full">
-                        <h1 className="font-sans font-bold text-3xl my-2">Qual a sua tarefa?</h1>
+                        <h1 className="font-sans font-bold text-2xl my-2">Qual a sua tarefa?</h1>
                         <form 
                         onSubmit={handleRegisterTask}
                         className=" flex flex-col w-full items-center">
@@ -139,24 +141,24 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
                                 placeholder="Digite aqui a sua tarefa..."
                              />
                             <div className="flex w-full items-center m-4">
-                            <input className="size-6" type="checkbox"
+                            <input className="size-4" type="checkbox"
                             
                             checked={publicTask}
                             onChange={handleChangePublic}
                             /> 
                             <label className="text-base font-sans font-semibold mx-4">Deixar tarefa publica?</label>
                             </div>
-                            <button className="bg-blue-500 rounded transition duration-300 color ease-in w-1/3 h-12 min-w-28 hover:bg-orange-400" type="submit">Registrar</button>
+                            <button className="bg-purple-400 rounded transition duration-500 color ease-in w-1/3 h-12 min-w-28 hover:bg-orange-400" type="submit">Registrar</button>
                         </form>
                     </div>
                 </section>
                 <section className=" h-full w-full flex flex-col px-4  bg-white max-w-screen-lg rounded-t">
-                    <h1 className="font-sans font-bold text-3xl mb-6 mt-4 text-black">Minhas terefas</h1>
+                    <h1 className="font-sans font-bold text-2xl mb-6 mt-4 text-black">Minhas terefas</h1>
                    {tasks.map((item)=>(
                      <article key={item.id} className=" mb-4 border-2 rounded border-gray-300">
                      {item.public && (
                         <div className=" flex p-2 items-center">
-                        <label className="text-white p-2 bg-blue-400 rounded mr-2">Publico</label>
+                        <label className="text-white p-2 bg-orange-400 rounded mr-2">Publico</label>
                         <button className=" transition background-color ease-in-out duration-300 p-2 rounded hover:bg-gray-100" onClick={() => handleShare(item.id)}>
                             <FiShare size={24} color="#000" />
                         </button>
@@ -184,7 +186,9 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
     )
 }
 
-//---------------------------------SERVER SIDE -----------------------------------------------------
+
+//---------------------------------SERVER SIDE ------------------------------------------------
+
 
 export const getServerSideProps: GetServerSideProps = async ({req}) =>{
     const session = await getSession({req});
