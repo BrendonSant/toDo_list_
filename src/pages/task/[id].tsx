@@ -43,7 +43,7 @@ export default function Task({item}: TaskProps){
 
 export const getServerSideProps: GetServerSideProps = async({params}) =>{
 
-    console.log('getServerSideProps called');
+   
     const id = params?.id as string;
 
     const docRef = doc(db, "tarefas", id);
@@ -77,9 +77,7 @@ export const getServerSideProps: GetServerSideProps = async({params}) =>{
         taskId:id,
     }
 
-    console.log(snapshot.data());
-    console.log(task);
-
+   
 return{
     props:{
         item: task,
