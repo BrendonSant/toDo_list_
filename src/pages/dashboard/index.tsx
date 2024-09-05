@@ -141,7 +141,7 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
                                 placeholder=" Digite aqui a sua tarefa..."
                              />
                             <div className="flex w-full items-center m-4">
-                            <input className="size-4" type="checkbox"
+                            <input  className="size-4" type="checkbox"
                             
                             checked={publicTask}
                             onChange={handleChangePublic}
@@ -159,8 +159,8 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
                      {item.public && (
                         <div className=" flex p-2 items-center">
                         <label className="text-white p-2 bg-orange-400 rounded mr-2">Publico</label>
-                        <button className=" transition background-color ease-in-out duration-300 p-2 rounded hover:bg-gray-100" onClick={() => handleShare(item.id)}>
-                            <FiShare size={24} color="#000" />
+                        <button className="p-2" onClick={() => handleShare(item.id)}>
+                            <FiShare className="hover:stroke-violet-500" size={24} color="#000" />
                         </button>
                     </div>
                      )}
@@ -172,8 +172,8 @@ function handleChangePublic(event:ChangeEvent<HTMLInputElement>){
                          ):(
                             <p className="text-black whitespace-pre-wrap">{item.tarefa}</p>
                          )}
-                         <div className=" transition background-color ease-in-out duration-300 p-2 rounded hover:bg-gray-100">
-                         <FiTrash size={24}  color="orange" onClick={()=> handleDeleteTask(item.id)}/>
+                         <div className=" p-2">
+                         <FiTrash className="hover:stroke-red-600" size={24}  color="orange" onClick={()=> handleDeleteTask(item.id)}/>
                          </div>
                         
                      </div>
