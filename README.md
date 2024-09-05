@@ -50,49 +50,74 @@ npm run dev
 ### Configuração do Firebase
 ```javascript
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyADamUDCYsKhA8X_gac6z-nMBJEj7XTrBw",
+  authDomain: "todolist-daff0.firebaseapp.com",
+  projectId: "todolist-daff0",
+  storageBucket: "todolist-daff0.appspot.com",
+  messagingSenderId: "754599494030",
+  appId: "1:754599494030:web:9805106b1cae624cd2a4df"
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+const db = getFirestore(firebaseApp);
+
+export {db};
 ````
 
 ### Função para adicionar tarefas
 ```javascript
 
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from './firebaseConfig';
+ async function handleRegisterTask(event: FormEvent){
+        event.preventDefault();
 
-export const addTask = async (task) => {
-  try {
-    const docRef = await addDoc(collection(db, 'tasks'), task);
-    console.log('Tarefa adicionada com ID:', docRef.id);
-  } catch (e) {
-    console.error('Erro ao adicionar tarefa: ', e);
-  }
-};
+        if(input === "") return;
+
+        try{
+            
+            await addDoc(collection(db, 'tarefas'),{
+                tarefa: input,
+                created: new Date(),
+                user: user?.email,
+                public: publicTask
+            });
+
+            setInput("");
+            setPublicTask(false);
+
+            }catch(err){
+                console.log(err);
+            }
+    }
+
+
+
+    async function handleDeleteTask(id: string) {
+        const docRef = doc(db, "tarefas", id);
+        await deleteDoc(docRef);
+    }
+
 
 ````
 ### Função para compartilhar link da tarefa
 ```javascript
 
-const shareTask = (taskId) => {
-  const taskUrl = `${window.location.origin}/task/${taskId}`;
-  navigator.clipboard.writeText(taskUrl);
-  alert('Link da tarefa copiado para a área de transferência!');
-};
-
+async function handleShare(id: string){
+    await navigator.clipboard.writeText(
+        `${process.env.NEXT_PUBLIC_URL}/task/${id}`
+    );
+    alert("Url copiada com sucesso!")
+}
 ````
 ## 📚 Objetivo
 Este projeto foi realizado com o intuito de estudar e aprimorar as habilidades em desenvolvimento front-end, utilizando Next.js e Firebase para uma experiência prática e real.
