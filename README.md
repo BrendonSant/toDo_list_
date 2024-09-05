@@ -1,31 +1,32 @@
 # TAREFAS+
 
-Aplicação desenvolvida por **Brendon Santos** com o objetivo de aprimorar os conhecimentos em **Front-End** utilizando **Next.js**. Este projeto permite que usuários cadastrem, salvem e compartilhem suas tarefas com outros, criando um ambiente colaborativo e prático.
+Aplicação desenvolvida por **Brendon Santos** com o objetivo de estudar e aprimorar conhecimentos em **Front-End** utilizando **Next.js**. A aplicação permite que os usuários se conectem via Google, cadastrem tarefas e compartilhem-nas com amigos. Somente usuários logados podem comentar nas tarefas compartilhadas.
 
 ## 🚀 Funcionalidades
 
-- **Autenticação via Google**: O usuário pode se conectar ou cadastrar utilizando sua conta Google.
-- **Cadastro de Tarefas**: Dentro da aplicação, é possível criar e salvar tarefas.
-- **Compartilhamento de Tarefas**: As tarefas podem ser compartilhadas com amigos por meio de um link (URL).
-- **Comentários em Tarefas**: Usuários logados podem comentar em tarefas compartilhadas por amigos.
-  
-## 💻 Tecnologias Utilizadas
+- **Autenticação via Google**: O usuário pode conectar ou cadastrar uma conta usando o Google.
+- **Cadastro de Tarefas**: Criação e salvamento de tarefas diretamente no app.
+- **Compartilhamento de Tarefas**: Compartilhamento das tarefas por meio de um link (URL) com amigos.
+- **Comentários em Tarefas**: Usuários logados podem comentar nas tarefas compartilhadas.
 
-- **Next.js**: Framework React para a criação de interfaces dinâmicas e eficientes.
-- **Firebase**: Utilizado para autenticação e armazenamento das tarefas e comentários.
+### 📸 Telas do Projeto
 
-## 📸 Imagens
-
-### Tela Principal
+#### Tela Principal
 ![Tela Principal](./public/prints/Tela-Principal.png)
 
-### Tela de Tarefas
-![Tela de Tarefas](./public/prints/Tela_de_tarefas.png)
+#### Tela de tarefas
+![Tela de Tarefas](./public/prints/Tela_de_terefas.png)
 
-### Tela de Comentários
+#### Tela de Comentários
 ![Tela de Comentários](./public/prints/Tela_de_comentarios.png)
 
-## 🛠️ Como Executar o Projeto
+## 💻 Tecnologias Utilizadas
+
+- **Next.js**: Framework React para construção de páginas dinâmicas e estáticas.
+- **Firebase**: Utilizado para autenticação, armazenamento de tarefas e comentários.
+- **Tailwind CSS**: Framework CSS para estilização dos componentes.
+
+## 🔧 Instalação
 
 1. Clone o repositório:
    ```bash
@@ -45,8 +46,45 @@ Aplicação desenvolvida por **Brendon Santos** com o objetivo de aprimorar os c
     npm run dev
 5.Acesse a aplicação em `http://localhost:3000`.
 
-## 🔗 Link do Projeto
-Você pode acessar o projeto em produção aqui.
+## 🧩 Principais Trechos de Código
+### Configuração do Firebase
+
+     ```javascript
+
+          import { initializeApp } from 'firebase/app';
+          import { getFirestore } from 'firebase/firestore';
+          import { getAuth } from 'firebase/auth';
+                    
+          const firebaseConfig = {
+          apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+          authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+          storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+          };
+          const app = initializeApp(firebaseConfig);
+          export const db = getFirestore(app);
+          export const auth = getAuth(app);
+
+
+
+### Função para adicionar tarefas
+```javascript
+  
+                    import { addDoc, collection } from 'firebase/firestore';
+      import { db } from './firebaseConfig';
+      
+      export const addTask = async (task) => {
+        try {
+          const docRef = await addDoc(collection(db, 'tasks'), task);
+          console.log('Tarefa adicionada com ID:', docRef.id);
+        } catch (e) {
+          console.error('Erro ao adicionar tarefa: ', e);
+        }
+      };
+
+
 
 ## 📚 Objetivo
 Este projeto foi realizado com o intuito de estudar e aprimorar as habilidades em desenvolvimento front-end, utilizando Next.js e Firebase para uma experiência prática e real.
