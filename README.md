@@ -124,3 +124,5 @@ Este projeto foi realizado com o intuito de estudar e aprimorar as habilidades e
 
 ## 📧 Contato
 Caso tenha dúvidas ou sugestões, entre em contato pelo GitHub Brendon Santos.
+
+/install.sh -m -t all -l -c Dark -N stable --normal --round -i ubuntu
